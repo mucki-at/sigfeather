@@ -1,10 +1,26 @@
 {
   "folders": [
     {
+      "name": "device",
       "path": "device"
     },
     {
+      "name": "host",
       "path": "host"
     }
-  ]
+  ],
+  "settings": {
+    "cmake.exclude": [
+      "${workspaceFolder:device}"
+    ],
+    "cmake.autoSelectActiveFolder": false,
+    "cmake.buildDirectory": "${workspaceFolder:host}/build",
+    "cmake.defaultActiveFolder": "${workspaceFolder:host}",
+    "cmake.sourceDirectory": "${workspaceFolder:host}",
+    "files.associations": {
+      "*.asm": "ASM",
+      "mutex": "cpp",
+      "iostream": "cpp"
+    }
+  }
 }
