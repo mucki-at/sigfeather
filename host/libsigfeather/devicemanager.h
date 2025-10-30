@@ -4,16 +4,22 @@
 #pragma once
 
 #include <libusb.h>
-#include <format>
+#include "sigfeather.h"
+#include "device.h"
+#include <memory>
 
-class DeviceManager
+class SigFeather::DeviceManager
 {
+public:
+    static constexpr int VID_SIGFEATHER = 0x1209;
+    static constexpr int PID_SIGFEATHER = 0x7366;
+
 public:
     DeviceManager();
     ~DeviceManager();
 
     template<typename Callback>
-    int findUsbDevices(Callback callback)
+    void findUsbDevices(Callback callback)
     {
         libusb_device** list = nullptr;
         ssize_t count = libusb_get_device_list(usbContext, &list);
@@ -24,12 +30,15 @@ public:
             libusb_device_descriptor desc;
             if (libusb_get_device_descriptor(device, &desc) == 0)
             {
-                callback(std::format("Device {:04x}:{:04x}", desc.idVendor, desc.idProduct).c_str());
+                if (desc.idVendor == VID_SIGFEATHER && desc.idProduct == PID_SIGFEATHER)
+                {
+                    if (callback(std::make_shared<Device>(device, desc))) break;
+                }
             }
         }
 
         libusb_free_device_list(list, 1);
-        return 0;
+        return;
     }
 
 private:

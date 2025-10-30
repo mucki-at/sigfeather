@@ -1,0 +1,6 @@
+[submodule "device/lib/pico-common"]
+	path = device/lib/pico-common
+	url = https://github.com/mucki-at/pico-common
+[submodule "device/lib/pico-usb"]
+	path = device/lib/pico-usb
+	url = https://github.com/mucki-at/pico-usb

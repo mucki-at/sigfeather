@@ -1,0 +1,10 @@
+.program samplePin
+; sample a single pin and output the bits as fast as possible
+
+.pio_version 1          ; written for rp2350
+.fifo rx                ; we are only receiving, so increase our fifo size
+.in 1 left auto 32      ; shift left, use all 32 bits, autopush when full
+
+.wrap_target
+    in PINS, 1
+.wrap

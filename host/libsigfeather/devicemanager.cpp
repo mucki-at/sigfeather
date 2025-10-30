@@ -5,13 +5,13 @@
 #include "devicemanager.h"
 #include <stdexcept>
 
-DeviceManager::DeviceManager()
+SigFeather::DeviceManager::DeviceManager()
 {
     if (libusb_init(&usbContext) < 0)
         throw std::runtime_error("Failed to initialize libusb");
 }
 
-DeviceManager::~DeviceManager()
+SigFeather::DeviceManager::~DeviceManager()
 {
     if (usbContext)
         libusb_exit(usbContext);

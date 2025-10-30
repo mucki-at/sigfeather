@@ -3,15 +3,13 @@
     "configurations": [
         {
             "name": "sftool",
-            "type": "cppdbg",
+            "type": "lldb-dap",
             "request": "launch",
             "program": "${workspaceFolder}/build/sftool/sftool",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb"
+            "args": [
+                "-s", "64"
+            ],
+            "cwd": "${workspaceFolder}"           
         }
     ]
 }
